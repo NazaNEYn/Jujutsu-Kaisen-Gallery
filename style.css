@@ -1,0 +1,180 @@
+/* Reset */
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+
+/* ********* */
+
+:root {
+    --black: #23252f;
+    --neon-green: #64ed85;
+    --white: #efe;
+    --pink: #e7786f;
+    --light-blue: #bccffa;
+    --dark-blue--1: #4b6cb7;
+    --dark-blue--2: #182848;
+}
+
+
+/* ************************** */
+
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 45deg;
+    inherits: false;
+}
+
+
+/***************************  */
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: lato;
+    color: var(--white);
+    background: var(--dark-blue--2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: clamp(320px, 80%, 850px);
+    margin: 5em auto;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background: var(--dark-blue--2);
+    border-radius: 10px;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    width: 108%;
+    min-height: 105%;
+    z-index: -1;
+    left: -4%;
+    bottom: -2.3%;
+    border-radius: 10px;
+    filter: blur(4px);
+    background: linear-gradient(var(--rotate), #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)
+    /* ************ */
+    /* background: linear-gradient(var(--rotate), #488cfb, #29dbbc, #ddf505, #ff9f0e, #e440bb, #655adc) */
+    /* background-image: linear-gradient( var(--rotate), #efd5ff 0%, #515ada 100%); */
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 108%;
+    z-index: -1;
+    left: -5%;
+    bottom: -4%;
+    border-radius: 10px;
+    filter: blur(20px);
+    background: linear-gradient(var(--rotate), #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)
+}
+
+.container:hover::after,
+.container:hover::before {
+    animation: spin 3.5s linear infinite;
+    transition: animation .5s;
+}
+
+
+/* ************ */
+
+.box {
+    width: clamp(300px, 80%, 800px);
+    min-height: 60vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 10px;
+}
+
+.circle {
+    width: clamp(200px, 30%, 800px);
+    height: clamp(200px, 30%, 800px);
+    border-radius: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin: 1.5em;
+    transform: scale(1);
+    transition: transform .5s, box-shadow .5s;
+    box-shadow: 0 0 15px 3px #000f2e;
+}
+
+.circle:hover {
+    transform: scale(1.1);
+    transition: transform .5s;
+    box-shadow: 0 0 25px 5px #000f2a;
+}
+
+li {
+    list-style: none;
+    width: 50%;
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+    display: block;
+    margin: -.2em 0;
+    animation: fade 2.5s;
+    transform: scale(1);
+    transition: 1s;
+}
+
+img:hover {
+    transform: scale(1.1);
+    transition: 1s;
+    filter: brightness(120%) saturate(120%);
+}
+
+h1 {
+    margin: 1em 0;
+    font-size: clamp(2rem, 3vw, 4rem);
+    color: var(--light-blue);
+}
+
+
+/* ********************** */
+
+
+/* Animation */
+
+@keyframes spin {
+    0% {
+        --rotate: 0deg;
+    }
+    100% {
+        --rotate: 360deg;
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
